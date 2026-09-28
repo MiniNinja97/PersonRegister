@@ -239,6 +239,8 @@ public List<Person> GetPeople()
 
         });
 
+       
+
         return people;
     }
     
@@ -246,5 +248,32 @@ public List<Person> GetPeople()
 
     
 }
+class  SortPublicData
+{
+   PersonData personData = new PersonData();
+
+
+ public List<Person> SortAfterId()
+{
+    List<Person> people = personData.GetPeople(); 
+
+    List<Person> sortedOnId = people.OrderBy(o => o.Identification.ID).ToList();
+    
+    
+   foreach (Person person in sortedOnId)
+{
+   Console.WriteLine(person.Identification.ID);
+Console.WriteLine(person.Identification.Name);
+
+}
+
+return sortedOnId;
+}
+
+
+
+  
+}
+
 
 
