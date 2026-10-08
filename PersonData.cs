@@ -252,8 +252,11 @@ public class PersonData
 class SortPublicDataId
 {
     PersonData personDataId = new PersonData();
+    PersonDisplay displayPerson = new PersonDisplay();
 
-
+///<summary>
+/// Sorts the list of people by their ID in ascending order and displays the sorted list.
+///</summary>
     public List<Person> SortAfterId()
     {
         List<Person> people = personDataId.GetPeople();
@@ -263,20 +266,19 @@ class SortPublicDataId
 
         foreach (Person person in sortedOnId)
         {
-            Console.WriteLine(person.Identification.ID);
-            // Console.WriteLine(person.Identification.Name);
-
+            displayPerson.DisplayPerson(person);
         }
 
         return sortedOnId;
     }
 
-    
+
 }
 
 class GetTopFiveID
 {
     PersonData firstFiveId = new PersonData();
+    PersonDisplay displayPerson = new PersonDisplay();
 
     public List<Person> FirstFiveId()
     {
@@ -286,18 +288,18 @@ class GetTopFiveID
         List<Person> people = firstFiveId.GetPeople();
 
         List<Person> topFiveId = people.OrderBy(o => o.Identification.ID).Take(5).ToList();
-       
+
 
         foreach (Person person in topFiveId)
 
         {
-            Console.WriteLine(person.Identification.ID);
-            
+            displayPerson.DisplayPerson(person);
+
         }
-        
+
 
         return topFiveId;
-        
+
 
     }
 
@@ -308,6 +310,7 @@ class GetTopFiveID
 class GetTopFiveName
 {
     PersonData firstFiveName = new PersonData();
+    PersonDisplay displayPerson = new PersonDisplay();
 
     public List<Person> FirstFiveName()
     {
@@ -317,18 +320,17 @@ class GetTopFiveName
         List<Person> people = firstFiveName.GetPeople();
 
         List<Person> topFiveName = people.OrderBy(o => o.Identification.Name).Take(5).ToList();
-       
+
 
         foreach (Person person in topFiveName)
 
         {
-            Console.WriteLine(person.Identification.Name);
-            
+            displayPerson.DisplayPerson(person);
         }
-        
+
 
         return topFiveName;
-        
+
 
     }
 
@@ -339,6 +341,7 @@ class GetTopFiveName
 class SortPublicDataName
 {
     PersonData personDataName = new PersonData();
+    PersonDisplay displayPerson = new PersonDisplay();
 
     public List<Person> SortAfterName()
     {
@@ -348,18 +351,18 @@ class SortPublicDataName
 
         foreach (Person person in sortedOnName)
         {
-
-            Console.WriteLine(person.Identification.Name);
+            displayPerson.DisplayPerson(person);
         }
-        
+
         return sortedOnName;
     }
-    
+
 }
-  
+
 public class SearchPeople
 {
     PersonData people = new PersonData();
+    PersonDisplay displayPerson = new PersonDisplay();
 
     public List<Person> SearchPerson()
 
@@ -369,25 +372,60 @@ public class SearchPeople
         List<Person> peopleSearch = people.GetPeople();
 
 
-        Console.WriteLine("Serach for a person:");
+        Console.WriteLine("Search for a person:");
         string? searchText = Console.ReadLine();
 
-        List<Person> SearchResult = peopleSearch.FindAll(e => e.Identification.Name.ToUpper().Contains((searchText ?? string.Empty).ToUpper()));
+        while (string.IsNullOrWhiteSpace(searchText))
+        {
+            Console.WriteLine("Search text is empty!");
+            Console.WriteLine("Please enter a valid search text:");
+            searchText = Console.ReadLine();
+        }
+
+        List<Person> SearchResult = peopleSearch.FindAll(e => e.Identification.Name.ToUpper().Contains((searchText ?? string.Empty).ToUpper())).OrderBy(e => e.Identification.ID).ToList();
 
         if (SearchResult.Count > 0)
-        { 
-             foreach (Person person in SearchResult)
-             {
-                 Console.WriteLine(person.Identification.Name);
-             }
+        {
+            foreach (Person person in SearchResult)
+            {
+                displayPerson.DisplayPerson(person);
+            }
         }
         else
         {
             Console.WriteLine("Person not found!");
         }
 
+
         return SearchResult;
     }
 }
 
+public class PersonDisplay
+{
 
+    public void DisplayPerson(Person person)
+    {
+        Console.WriteLine();
+        Console.WriteLine($"ID: {person.Identification.ID}");
+        Console.WriteLine();
+        Console.WriteLine($"Name: {person.Identification.Name}");
+        Console.WriteLine();
+        Console.WriteLine($"Email: {person.ContactDetails.Email}");
+        Console.WriteLine();
+        Console.WriteLine($"Address: {person.ContactDetails.Adress}");
+        Console.WriteLine();
+        Console.WriteLine($"PostNum: {person.ContactDetails.PostNum}");
+        Console.WriteLine();
+        Console.WriteLine($"Place: {person.ContactDetails.Place}");
+        Console.WriteLine();
+        Console.WriteLine($"CompanyName: {person.Business.CompanyName}");
+        Console.WriteLine();
+        Console.WriteLine($"CompanySlogan: {person.Business.CompanySlogan}");
+        Console.WriteLine();
+
+
+
+    }
+
+}
