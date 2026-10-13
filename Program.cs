@@ -26,23 +26,23 @@ switch (userInput)
 {
     case "1":
     SortPublicDataId sortPublicData = new SortPublicDataId();
-sortPublicData.SortAfterId();
+await sortPublicData.SortAfterId();
         break;
     case "2":
     SortPublicDataName sortPublicDataName = new SortPublicDataName();
-sortPublicDataName.SortAfterName();
+await sortPublicDataName.SortAfterName();
         break;
     case "3":
     GetTopFiveID getTopFiveId = new GetTopFiveID();
-getTopFiveId.FirstFiveId();
+await getTopFiveId.FirstFiveId();
         break;
     case "4":
     GetTopFiveName getTopFiveName = new GetTopFiveName();
-getTopFiveName.FirstFiveName();
+await getTopFiveName.FirstFiveName();
         break;
     case "5":
     SearchPeople searchPerson = new SearchPeople();
-searchPerson.SearchPerson();
+await searchPerson.SearchPerson();
         break;
     case "6":
         Console.WriteLine("Visar menyn igen.");

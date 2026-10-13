@@ -1,6 +1,7 @@
 
-public class PersonData
+public class PersonData : IPersonData
 {
+    
 
     Person person1 = new Person
     {
@@ -220,7 +221,7 @@ public class PersonData
 
 
 
-    public List<Person> GetPeople()
+    public Task<List<Person>> GetPeople()
     {
         List<Person> people = new List<Person>();
 
@@ -242,7 +243,7 @@ public class PersonData
 
 
 
-        return people;
+        return Task.FromResult(people);
     }
 
 
@@ -257,9 +258,9 @@ class SortPublicDataId
 ///<summary>
 /// Sorts the list of people by their ID in ascending order and displays the sorted list.
 ///</summary>
-    public List<Person> SortAfterId()
+    public async Task<List<Person>> SortAfterId()
     {
-        List<Person> people = personDataId.GetPeople();
+        List<Person> people = await personDataId.GetPeople();
 
         List<Person> sortedOnId = people.OrderBy(o => o.Identification.ID).ToList();
 
@@ -280,12 +281,12 @@ class GetTopFiveID
     PersonData firstFiveId = new PersonData();
     PersonDisplay displayPerson = new PersonDisplay();
 
-    public List<Person> FirstFiveId()
+    public async Task<List<Person>> FirstFiveId()
     {
 
 
 
-        List<Person> people = firstFiveId.GetPeople();
+        List<Person> people = await firstFiveId.GetPeople();
 
         List<Person> topFiveId = people.OrderBy(o => o.Identification.ID).Take(5).ToList();
 
@@ -312,12 +313,12 @@ class GetTopFiveName
     PersonData firstFiveName = new PersonData();
     PersonDisplay displayPerson = new PersonDisplay();
 
-    public List<Person> FirstFiveName()
+    public async Task<List<Person>> FirstFiveName()
     {
 
 
 
-        List<Person> people = firstFiveName.GetPeople();
+        List<Person> people = await firstFiveName.GetPeople();
 
         List<Person> topFiveName = people.OrderBy(o => o.Identification.Name).Take(5).ToList();
 
@@ -343,9 +344,9 @@ class SortPublicDataName
     PersonData personDataName = new PersonData();
     PersonDisplay displayPerson = new PersonDisplay();
 
-    public List<Person> SortAfterName()
+    public async Task<List<Person>> SortAfterName()
     {
-        List<Person> people = personDataName.GetPeople();
+        List<Person> people = await personDataName.GetPeople();
 
         List<Person> sortedOnName = people.OrderBy(o => o.Identification.Name).ToList();
 
@@ -364,12 +365,12 @@ public class SearchPeople
     PersonData people = new PersonData();
     PersonDisplay displayPerson = new PersonDisplay();
 
-    public List<Person> SearchPerson()
+    public async Task<List<Person>> SearchPerson()
 
 
     {
 
-        List<Person> peopleSearch = people.GetPeople();
+        List<Person> peopleSearch = await people.GetPeople();
 
 
         Console.WriteLine("Search for a person:");
