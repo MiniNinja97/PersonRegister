@@ -2,60 +2,52 @@
 
 ## About the Project
 
-### In this file you can read about how to use this "Person Register" program in the terminal!
+**PersonRegister** is a C# console application created as part of a .NET programming assignment. It allows users to view, sort and search for people through an interactive menu.
 
-**PersonRegister** is a C# console application created as a .NET programming assignment.
-The application manages a register of people and allows users to view, sort, and search for individuals through an interactive menu.
+### Features
 
-## This application features
+- Display all people sorted by ID or name.
+- Display the first five people sorted by ID or name.
+- Search for people by name.
+- Display detailed information about each person.
+- Handle invalid menu selections and empty searches.
 
-* Display all registered people sorted by ID in ascending order.
-* Display all registered people sorted alphabetically by name.
-* Display the first five people sorted by ID.
-* Display the first five people sorted by name.
-* Search for people by name.
-* isplay detailed information about each person.
-* andle invalid menu selections and empty search inputs.
-* Navigate through an interactive menu until the user chooses to exit.
+## How to Run
 
-## Person Information
+1. Clone the repository.
+2. Open a terminal in the project directory.
+3. Build the application using `dotnet build`.
+4. Run the application using `dotnet run`.
+5. Follow the console menu.
 
-Each registered person contains the following information:
+## Project Structure
 
-* ID
-* Name
-* Email adress
-* Street adress
-* Postal code 
-* City
-* Company name
-* Company slogan
+I divided the person information into three classes because I found it easier to organize the data this way:
 
+- **Identification** – ID and name.
+- **ContactDetails** – Email and address information.
+- **Business** – Company name and slogan.
 
-## Technologies Used 
+The **Person** class bring all these together. I chose this structure because it makes the information easier to use, understand, sort, and search through.
 
-* C#
-* .NET
-* LINQ
-* Git and GitHub
+## C# and .NET
 
-## How to run 
-```
+C# is a programming language while .NET is a development platform that provides tools, libraries, and a runtime for applications such as websites, desktop applications and APIs.
 
-1. Clone the repository
-2. Open a terminal in the project 
-3. Run the application using: dotnet run
-4. Follow the instructions in the console menu 
-```
+I have previously worked with JavaScript and TypeScript and noticed several similarities. Functions and methods have similar structures and `console.log()` in JavaScript works similarly to `Console.WriteLine()` in C#.
 
+One difference is that C# is statically typed, while JavaScript is dynamically typed. TypeScript is more similar to C# because both use types.
 
-## Purpose 
+## Development Tools
 
-The purpose of this project is to practice C# fundamentals, object-oriented programming, LINQ operations, input validation, and Git version control.
+**Visual Studio** is an integrated development environment used to write, build, run, and debug applications. I use VS Code on Linux Mint which allows me to do basically the same things with extensions and the .NET SDK.
 
-The application was developed as part of my education in .NET Development
+I prefer creating projects through terminal commands and opening them in VS Code instead of starting projects through the application's interface.
 
+**PowerShell** is a command-line shell for running commands and managing files. I use the Linux terminal instead, which I personally find easier to work with.
 
+**Git** is a version control system I use to track changes, save versions, and manage branches.
 
+A **commit** saves a version of my work with a descriptive message. A **branch** is a separate line of development, like another page in a notebook, where I can work without mixing different tasks.
 
-
+For this project, I worked on a branch a named `develop`, made commits and later merged it into the `main` branch and pushed the project to my GitHub.

@@ -1,3 +1,8 @@
+/// <summary>
+/// Represents a person in the person register.
+/// Contains the person's identification, contact details,
+/// and business information.
+/// </summary>
 public class Person
 {
     public required Identification Identification {get; set;}
