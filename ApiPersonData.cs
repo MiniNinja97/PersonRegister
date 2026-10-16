@@ -1,3 +1,5 @@
+
+using System.Text.Json;
 public class ApiPersonData : IPersonData
 {
 
@@ -21,9 +23,46 @@ public async Task<List<Person>> GetPeople()
 
        var result = JsonSerializer.Deserialize<PersonApiResponse>(json, data);
 
+       int IDCounter = 1;
+
+       if (result == null)
+        {
+            return people;
+        }
 
 
-       return result;
+       foreach (var randomUser in result.Results)
+        {
+            Person person = new Person
+            {
+                Identification = new Identification
+                {
+                    ID = IDCounter++,
+                    Name = $"{randomUser.Name.First} {randomUser.Name.Last}",
+                },
+                ContactDetails = new ContactDetails
+                {
+                    Email = randomUser.Email,
+                    Adress = $"{randomUser.Location.Street.Number} {randomUser.Location.Street.Name}",
+                    PostNum = randomUser.Location.Postcode.ToString(),
+                    Place = $"{randomUser.Location.City}, {randomUser.Location.State}"
+                },
+                Business = new Business
+                {
+                    CompanyName = $"{randomUser.Name.Last} AB",
+                    CompanySlogan = "We are the best! "
+                }
+
+                
+            };
+
+            
+            people.Add(person);
+        }
+
+
+
+       return people;
     }
 
     
@@ -31,7 +70,7 @@ public async Task<List<Person>> GetPeople()
 
 public class PersonApiResponse
 {
-    public List<RandomUser> Result { get; set; } = new();
+    public List<RandomUser> Results { get; set; } = new();
 
     
 }

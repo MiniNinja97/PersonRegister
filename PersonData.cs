@@ -252,8 +252,16 @@ public class PersonData : IPersonData
 }
 class SortPublicDataId
 {
-    PersonData personDataId = new PersonData();
+//     PersonData personDataId = new PersonData();
     PersonDisplay displayPerson = new PersonDisplay();
+private readonly IPersonData personDataId;
+
+
+
+ public SortPublicDataId(IPersonData selectedData)
+    {
+        personDataId = selectedData;
+    }
 
 ///<summary>
 /// Sorts the list of people by their ID in ascending order and displays the sorted list.
