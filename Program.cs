@@ -1,17 +1,27 @@
 ﻿
+IPersonData? selectedData = null;
+if (args.Length > 0 && args[0] == "api" )
+{
+    selectedData = new ApiPersonData();
+}
+
 Console.WriteLine("Välkommen till Personregistret!");
 Console.WriteLine("Här kan du söka efter personer, sortera dem och se de fem första i registret.");
 Console.WriteLine("----------------------------------------------------");
 
+
+
 bool isRunning = true;
 while (isRunning)
 { 
+    if (selectedData == null)
+    {
 
      Console.WriteLine("Välj ett personrigister att söka i:");
         Console.WriteLine("1. Personregiser från lokat lager");
         Console.WriteLine("2. Personregiser från API");
 
-        IPersonData? selectedData = null;
+        
 
 string? firstUserInput = Console.ReadLine();
 
@@ -33,10 +43,11 @@ if (selectedData == null)
         Console.WriteLine("Du måste välja ett regiser först!");
         continue;
     }
+    }
 
 bool isSelected = true;
-while (isSelected)
-    {
+while (isSelected && selectedData != null)
+{
         Console.WriteLine("Här är personregistrets menyval:");
 Console.WriteLine("1. Sortera efter ID");
 Console.WriteLine("2. Sortera efter Namn");
@@ -79,6 +90,7 @@ await searchPerson.SearchPerson();
     case "6":
         Console.WriteLine("Återgår till registervalet.");
         isSelected = false;
+        selectedData = null;
         break;
     case "7":
         Console.WriteLine("Programmet avslutas.");
@@ -90,7 +102,8 @@ await searchPerson.SearchPerson();
         break;
         }
 }
-}
+    }
+
 
 
 
