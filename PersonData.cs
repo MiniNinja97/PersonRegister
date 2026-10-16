@@ -250,6 +250,34 @@ public class PersonData : IPersonData
 
 
 }
+
+public class ListPeople
+
+
+{
+
+   
+    private readonly IPersonData personDataId;
+
+
+
+ public ListPeople(IPersonData selectedData)
+    {
+        personDataId = selectedData;
+    }
+
+   public async Task ListAllPeople()
+    {
+        List<Person> people = await personDataId.GetPeople();
+
+        foreach( Person person in people)
+        {
+            PersonDisplay displayPerson = new PersonDisplay();
+            displayPerson.DisplayPerson(person);
+        }
+        
+    }
+}
 class SortPublicDataId
 {
 //     PersonData personDataId = new PersonData();
@@ -408,16 +436,19 @@ public class SearchPeople
         personDataId = selectedData;
     }
 
-    public async Task<List<Person>> SearchPerson()
+    public async Task<List<Person>> SearchPerson(string? searchText = null)
 
 
     {
 
         List<Person> peopleSearch = await personDataId.GetPeople();
 
-
-        Console.WriteLine("Search for a person:");
-        string? searchText = Console.ReadLine();
+        if (searchText == null)
+        {
+            Console.WriteLine("Search for a person:");
+            searchText = Console.ReadLine();
+        }
+        
 
         while (string.IsNullOrWhiteSpace(searchText))
         {
