@@ -286,7 +286,16 @@ private readonly IPersonData personDataId;
 
 class GetTopFiveID
 {
-    PersonData firstFiveId = new PersonData();
+    // PersonData firstFiveId = new PersonData();
+
+    private readonly IPersonData personDataId;
+
+
+
+ public GetTopFiveID(IPersonData selectedData)
+    {
+        personDataId = selectedData;
+    }
     PersonDisplay displayPerson = new PersonDisplay();
 
     public async Task<List<Person>> FirstFiveId()
@@ -294,7 +303,7 @@ class GetTopFiveID
 
 
 
-        List<Person> people = await firstFiveId.GetPeople();
+        List<Person> people = await personDataId.GetPeople();
 
         List<Person> topFiveId = people.OrderBy(o => o.Identification.ID).Take(5).ToList();
 
@@ -318,15 +327,23 @@ class GetTopFiveID
 
 class GetTopFiveName
 {
-    PersonData firstFiveName = new PersonData();
+    // PersonData firstFiveName = new PersonData();
     PersonDisplay displayPerson = new PersonDisplay();
+    private readonly IPersonData personDataId;
+
+
+
+ public GetTopFiveName(IPersonData selectedData)
+    {
+        personDataId = selectedData;
+    }
 
     public async Task<List<Person>> FirstFiveName()
     {
 
 
 
-        List<Person> people = await firstFiveName.GetPeople();
+        List<Person> people = await personDataId.GetPeople();
 
         List<Person> topFiveName = people.OrderBy(o => o.Identification.Name).Take(5).ToList();
 
@@ -349,12 +366,21 @@ class GetTopFiveName
 
 class SortPublicDataName
 {
-    PersonData personDataName = new PersonData();
+    // PersonData personDataName = new PersonData();
     PersonDisplay displayPerson = new PersonDisplay();
+
+     private readonly IPersonData personDataId;
+
+
+
+ public SortPublicDataName(IPersonData selectedData)
+    {
+        personDataId = selectedData;
+    }
 
     public async Task<List<Person>> SortAfterName()
     {
-        List<Person> people = await personDataName.GetPeople();
+        List<Person> people = await personDataId.GetPeople();
 
         List<Person> sortedOnName = people.OrderBy(o => o.Identification.Name).ToList();
 
@@ -370,15 +396,24 @@ class SortPublicDataName
 
 public class SearchPeople
 {
-    PersonData people = new PersonData();
+    // PersonData people = new PersonData();
     PersonDisplay displayPerson = new PersonDisplay();
+
+     private readonly IPersonData personDataId;
+
+
+
+ public SearchPeople(IPersonData selectedData)
+    {
+        personDataId = selectedData;
+    }
 
     public async Task<List<Person>> SearchPerson()
 
 
     {
 
-        List<Person> peopleSearch = await people.GetPeople();
+        List<Person> peopleSearch = await personDataId.GetPeople();
 
 
         Console.WriteLine("Search for a person:");

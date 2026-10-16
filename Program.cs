@@ -61,19 +61,19 @@ switch (userInput)
 await sortPublicData.SortAfterId();
         break;
     case "2":
-    SortPublicDataName sortPublicDataName = new SortPublicDataName();
+    SortPublicDataName sortPublicDataName = new SortPublicDataName(selectedData);
 await sortPublicDataName.SortAfterName();
         break;
     case "3":
-    GetTopFiveID getTopFiveId = new GetTopFiveID();
+    GetTopFiveID getTopFiveId = new GetTopFiveID(selectedData);
 await getTopFiveId.FirstFiveId();
         break;
     case "4":
-    GetTopFiveName getTopFiveName = new GetTopFiveName();
+    GetTopFiveName getTopFiveName = new GetTopFiveName(selectedData);
 await getTopFiveName.FirstFiveName();
         break;
     case "5":
-    SearchPeople searchPerson = new SearchPeople();
+    SearchPeople searchPerson = new SearchPeople(selectedData);
 await searchPerson.SearchPerson();
         break;
     case "6":
