@@ -9,10 +9,18 @@ private readonly HttpClient client = new();
 
 
 
-public async Task<List<Person>> GetPeople()
+private List<Person>? people = null; 
 
+
+
+public async Task<List<Person>> GetPeople()
+{
+    if (people != null)
     {
-       List<Person> people = new List<Person>();
+        return people;
+    }
+
+    people = new List<Person>();
 
        var json = await client.GetStringAsync("https://randomuser.me/api/?results=100&nat=us");
 
@@ -106,7 +114,7 @@ public class RandomUserLocation
     public required RandomUserStreet Street { get; set; }
     public required string City {get; set;}
     public required string State {get; set;}
-    public required string Postcode {get; set;}
+    public required int Postcode {get; set;}
 }
 
 public class RandomUserStreet

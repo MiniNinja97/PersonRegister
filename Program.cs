@@ -43,7 +43,7 @@ Console.WriteLine("2. Sortera efter Namn");
 Console.WriteLine("3. Visa de fem första personerna i registret efter ID");
 Console.WriteLine("4. Visa de fem första personerna i registret efter Namn");
 Console.WriteLine("5. Sök efter en person i registret");
-Console.WriteLine("6. Se menyn igen");
+Console.WriteLine("6. Tillbaka till registervalet");
 
 Console.WriteLine("7. Avsluta programmet");
 Console.WriteLine("----------------------------------------------------");
